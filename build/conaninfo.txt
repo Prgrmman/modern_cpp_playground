@@ -1,0 +1,41 @@
+[settings]
+    arch=armv8
+    build_type=Release
+    compiler=apple-clang
+    compiler.cppstd=14
+    compiler.libcxx=libc++
+    compiler.version=14
+    os=Macos
+
+[requires]
+    gtest/1.Y.Z
+
+[options]
+
+
+[full_settings]
+    arch=armv8
+    arch_build=armv8
+    build_type=Release
+    compiler=apple-clang
+    compiler.cppstd=14
+    compiler.libcxx=libc++
+    compiler.version=14
+    os=Macos
+    os_build=Macos
+
+[full_requires]
+    gtest/1.10.0:acde89d9f065d54f292393fafde612f9b3a9f0a7
+
+[full_options]
+    gtest:build_gmock=True
+    gtest:fPIC=True
+    gtest:hide_symbols=False
+    gtest:no_main=False
+    gtest:shared=False
+
+[recipe_hash]
+
+
+[env]
+
