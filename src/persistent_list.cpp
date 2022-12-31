@@ -20,7 +20,7 @@ PersistentList<T>::~PersistentList() {
 template<typename T>
 T *PersistentList<T>::get_head() {
   if (head)
-    return head.get();
+    return &(head.get()->elem);
   else
     return nullptr;
 }
@@ -29,7 +29,7 @@ template<typename T>
 PersistentList<T> PersistentList<T>::tail() {
   PersistentList<T> tailList;
   if (head) {
-    tailList.head = head.next;
+    tailList.head = head->next;
   }
   return tailList;
 }
@@ -40,9 +40,12 @@ PersistentList<T> PersistentList<T>::prepend(T elem) {
 
   /* Create a new node in the front, nad have it point to our
      current head. */
-  Link newHead = std::shared_ptr<T>(new Node);
+  Link newHead = std::shared_ptr<Node>(new Node);
   newHead->elem = elem;
   newHead->next = this->head;
   newList.head = newHead;
   return newList;
 }
+
+// explicit definition: Note, this is kind of bad practice...better to have a the whole thing as a header
+template class PersistentList<int>;

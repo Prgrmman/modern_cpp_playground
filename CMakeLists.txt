@@ -11,19 +11,15 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 
-add_library(listLib SHARED
+# Testing definitions
+include_directories(include)
+enable_testing()
+add_executable(persistent_list_test
+    test/persistent_list_test.cpp
     src/persistent_list.cpp
 )
-
-
-# Configure the directories to search for header files.
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# Set the shared object version property to the project's major version.
-set_target_properties(${PROJECT_NAME} PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR})
-
-# public headers to install
-set_target_properties(listLib PROPERTIES PUBLIC_HEADER include/persistent_list.hpp)
-
-#TODO missing install target
+target_link_libraries(
+  persistent_list_test
+  ${CONAN_LIBS}
+)
+#set_target_properties(persistent_list_test PROPERTIES PUBLIC_HEADER include/persistent_list.hpp)
